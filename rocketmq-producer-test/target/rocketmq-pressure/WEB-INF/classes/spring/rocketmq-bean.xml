@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd"
+	default-autowire="byName">
+	
+	<!-- producer配置 -->
+	<bean id="rmqProducer"
+		  class="com.deppon.module.news.service.RmqProducer" destroy-method="shutdown">
+		<property name="namesrvAddr" value="10.248.132.21:9876;10.248.132.22:9876" />
+		<property name="producerGroup" value="RMQ_PASS_TEST_PGROUP" />
+		<property name="topic" value="RMQ_PASS_TEST_TOPIC" />
+		<property name="tag" value="ESB_TOUAP2ESB_NEWS" />
+	</bean>
+	
+	<!-- consumer配置 -->
+	<bean id="rmqConsumer" class="com.deppon.module.news.service.RmqConsumer" destroy-method="shutdown">
+        <property name="namesrvAddr" value="10.248.132.21:9876;10.248.132.22:9876" />
+        <property name="consumerGroup" value="RMQ_PASS_TEST_CGROUP" />
+        <property name="topic" value="RMQ_YINGXIOA_TEST_TOPIC" />
+        <property name="tag" value="*" />
+    </bean>
+	
+</beans>

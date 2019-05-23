@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="rocketmq-pressure:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>rocketmq-pressure</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="rocketmq-pressure.war">
+      <element id="artifact" artifact-name="rocketmq-pressure:war exploded" />
+    </root>
+  </artifact>
+</component>
